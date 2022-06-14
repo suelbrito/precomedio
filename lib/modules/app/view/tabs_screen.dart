@@ -1,6 +1,6 @@
 import 'package:precomedio/components/main_drawer.dart';
-import 'package:precomedio/screens/lista_screen.dart';
-import 'package:precomedio/screens/compra_screen.dart';
+import 'package:precomedio/modules/app/view/lista_screen.dart';
+import 'package:precomedio/modules/compra/view/compra_screen.dart';
 import 'package:flutter/material.dart';
 
 class TabsScreen extends StatefulWidget {
