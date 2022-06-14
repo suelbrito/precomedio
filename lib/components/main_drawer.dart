@@ -46,8 +46,8 @@ class MainDrawer extends StatelessWidget {
           _createItem(
               Icons.local_offer,
               'Tickets',
-              () =>
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.TICKET))
+              () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoutes.TICKET_LIST))
         ],
       ),
     );

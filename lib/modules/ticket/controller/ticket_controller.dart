@@ -64,10 +64,14 @@ class TicketController with ChangeNotifier {
   }
 
   void removeTicket(Ticket ticket) {
-    int index = _items.indexWhere((p) => p.id == ticket.id);
+    removeTicketById(ticket.id);
+  }
+
+  void removeTicketById(String id) {
+    int index = _items.indexWhere((p) => p.id == id);
 
     if (index >= 0) {
-      _items.removeWhere((p) => p.id == ticket.id);
+      _items.removeWhere((p) => p.id == id);
       notifyListeners();
     }
   }

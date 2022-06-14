@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:precomedio/modules/app/view/lista_screen.dart';
 import 'package:precomedio/modules/compra/view/compra_screen.dart';
 import 'package:precomedio/modules/ticket/controller/ticket_controller.dart';
+import 'package:precomedio/modules/ticket/view/ticket_add.dart';
+import 'package:precomedio/modules/ticket/view/ticket_edit.dart';
 import 'package:precomedio/modules/ticket/view/ticket_screen.dart';
 import 'package:precomedio/modules/app/view/tabs_screen.dart';
 import 'package:precomedio/utils/app_routes.dart';
@@ -43,7 +45,9 @@ class MyApp extends StatelessWidget {
             AppRoutes.HOME: (ctx) => const TabsScreen(),
             AppRoutes.LISTA: (ctx) => const ListaScreen(),
             AppRoutes.COMPRA: (ctx) => const CompraScreen(),
-            AppRoutes.TICKET: (ctx) => const TicketScreen(),
+            AppRoutes.TICKET_LIST: (ctx) => const TicketScreen(),
+            AppRoutes.TICKET_ADD: (ctx) => const TicketAddScreen(),
+            AppRoutes.TICKET_EDIT: (ctx) => const TicketEditScreen(),
           },
         ));
   }

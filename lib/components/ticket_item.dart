@@ -14,7 +14,15 @@ class TicketItem extends StatelessWidget {
       child: ListTile(
         title: Text(ticket.codigo + " - " + ticket.empresa),
         subtitle: Text("CNPJ: " + ticket.cnpj),
-        trailing: const Icon(Icons.edit),
+        trailing: IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              AppRoutes.TICKET_EDIT,
+              arguments: ticket,
+            );
+          },
+        ),
       ),
     );
   }

@@ -10,10 +10,6 @@ class TicketScreen extends StatefulWidget {
 }
 
 class _TicketScreenState extends State<TicketScreen> {
-  _onClick() {
-    print('clicou!');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +26,9 @@ class _TicketScreenState extends State<TicketScreen> {
       ),
       body: const TicketList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onClick,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.TICKET_ADD);
+        },
         child: const Icon(Icons.add),
       ),
     );
