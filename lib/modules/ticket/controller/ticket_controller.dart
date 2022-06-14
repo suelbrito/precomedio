@@ -57,8 +57,17 @@ class TicketController with ChangeNotifier {
     int index = _items.indexWhere((p) => p.id == ticket.id);
 
     if (index >= 0) {
-      _items[index] = ticket;
-      notifyListeners();
+      final future = http.patch(
+          Uri.parse('$_baseUrl/tickets/${ticket.id}.json'),
+          body: jsonEncode({
+            "codigo": ticket.codigo,
+            "empresa": ticket.empresa,
+            "cnpj": ticket.cnpj
+          }));
+      return future.then((response) {
+        _items[index] = ticket;
+        notifyListeners();
+      });
     }
     return Future.value();
   }
@@ -67,12 +76,16 @@ class TicketController with ChangeNotifier {
     removeTicketById(ticket.id);
   }
 
-  void removeTicketById(String id) {
+  Future<void> removeTicketById(String id) {
     int index = _items.indexWhere((p) => p.id == id);
+    final future = http.delete(Uri.parse('$_baseUrl/tickets/$id'));
 
     if (index >= 0) {
-      _items.removeWhere((p) => p.id == id);
-      notifyListeners();
+      return future.then((response) {
+        _items.removeWhere((p) => p.id == id);
+        notifyListeners();
+      });
     }
+    return Future.value();
   }
 }
