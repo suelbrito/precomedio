@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:precomedio/modules/app/view/lista_screen.dart';
+import 'package:precomedio/modules/app/view/app_screen.dart';
 import 'package:precomedio/modules/compra/view/compra_screen.dart';
 import 'package:precomedio/modules/ticket/controller/ticket_controller.dart';
 import 'package:precomedio/modules/ticket/view/ticket_add.dart';

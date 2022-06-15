@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:precomedio/modules/app/view/app_list.dart';
 
 class ListaScreen extends StatefulWidget {
   const ListaScreen({Key? key}) : super(key: key);
@@ -10,10 +11,8 @@ class ListaScreen extends StatefulWidget {
 class _ListaScreenState extends State<ListaScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(children: <Widget>[Text('Oi')]),
-      ),
+    return const Scaffold(
+      body: AppList(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:precomedio/data/dummy_data.dart';
 import 'package:precomedio/modules/ticket/model/ticket_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +8,7 @@ import 'package:http/http.dart' as http;
 class TicketController with ChangeNotifier {
   final _baseUrl = 'https://acoes-275f1-default-rtdb.firebaseio.com';
 
-  final List<Ticket> _items = dummyTickets;
+  final List<Ticket> _items = [];
 
   List<Ticket> get items {
     return [..._items];
@@ -78,7 +77,7 @@ class TicketController with ChangeNotifier {
 
   Future<void> removeTicketById(String id) {
     int index = _items.indexWhere((p) => p.id == id);
-    final future = http.delete(Uri.parse('$_baseUrl/tickets/$id'));
+    final future = http.delete(Uri.parse('$_baseUrl/tickets/$id.json'));
 
     if (index >= 0) {
       return future.then((response) {
@@ -87,5 +86,28 @@ class TicketController with ChangeNotifier {
       });
     }
     return Future.value();
+  }
+
+  List<Ticket> loadItems() {
+    if (items.isEmpty) {
+      final future = http.get(Uri.parse('$_baseUrl/tickets.json'));
+      future.then((response) {
+        final Map<String, dynamic> list = jsonDecode(response.body);
+        list.forEach((key, value) {
+          int index = _items.indexWhere((p) => p.id == key);
+
+          if (index < 0) {
+            _items.add(Ticket(
+                id: key,
+                codigo: value['codigo'],
+                empresa: value['empresa'],
+                cnpj: value['cnpj']));
+          }
+        });
+        notifyListeners();
+      });
+    }
+
+    return items;
   }
 }
