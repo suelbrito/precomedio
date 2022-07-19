@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:precomedio/modules/compra/view/compra_list.dart';
 import 'package:precomedio/utils/app_routes.dart';
 
 class CompraScreen extends StatelessWidget {
@@ -6,14 +7,14 @@ class CompraScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Text('Oi'),
-            ),
-          )),
+    return Scaffold(
+      body: const CompraList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.COMPRA_ADD);
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

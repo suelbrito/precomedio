@@ -2,6 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:precomedio/modules/app/view/app_screen.dart';
+import 'package:precomedio/modules/compra/controller/compra_controller.dart';
+import 'package:precomedio/modules/compra/view/compra_add.dart';
+import 'package:precomedio/modules/compra/view/compra_edit.dart';
+import 'package:precomedio/modules/compra/view/compra_ativo_add.dart';
 import 'package:precomedio/modules/compra/view/compra_screen.dart';
 import 'package:precomedio/modules/ticket/controller/ticket_controller.dart';
 import 'package:precomedio/modules/ticket/view/ticket_add.dart';
@@ -26,6 +30,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => TicketController(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => CompraController(),
+          ),
         ],
         child: MaterialApp(
           title: 'Preço médio',
@@ -38,13 +45,18 @@ class MyApp extends StatelessWidget {
                   ),
               fontFamily: 'RobotoCondensed',
               textTheme: ThemeData().textTheme.copyWith(
-                  headline1:
-                      const TextStyle(color: Colors.grey, fontSize: 25))),
+                  headline1: const TextStyle(
+                      color: Colors.blueGrey,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold))),
           initialRoute: '/',
           routes: {
             AppRoutes.HOME: (ctx) => const TabsScreen(),
             AppRoutes.LISTA: (ctx) => const ListaScreen(),
-            AppRoutes.COMPRA: (ctx) => const CompraScreen(),
+            AppRoutes.COMPRA_LIST: (ctx) => const CompraScreen(),
+            AppRoutes.COMPRA_ADD: (ctx) => const CompraAddScreen(),
+            AppRoutes.COMPRA_EDIT: (ctx) => const CompraEditScreen(),
+            AppRoutes.COMPRA_ATIVO_ADD: (ctx) => const CompraAtivoAddScreen(),
             AppRoutes.TICKET_LIST: (ctx) => const TicketScreen(),
             AppRoutes.TICKET_ADD: (ctx) => const TicketAddScreen(),
             AppRoutes.TICKET_EDIT: (ctx) => const TicketEditScreen(),

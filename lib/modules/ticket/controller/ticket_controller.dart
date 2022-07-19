@@ -92,19 +92,21 @@ class TicketController with ChangeNotifier {
     if (items.isEmpty) {
       final future = http.get(Uri.parse('$_baseUrl/tickets.json'));
       future.then((response) {
-        final Map<String, dynamic> list = jsonDecode(response.body);
-        list.forEach((key, value) {
-          int index = _items.indexWhere((p) => p.id == key);
+        if (response.body != "null") {
+          final Map<String, dynamic> list = jsonDecode(response.body);
+          list.forEach((key, value) {
+            int index = _items.indexWhere((p) => p.id == key);
 
-          if (index < 0) {
-            _items.add(Ticket(
-                id: key,
-                codigo: value['codigo'],
-                empresa: value['empresa'],
-                cnpj: value['cnpj']));
-          }
-        });
-        notifyListeners();
+            if (index < 0) {
+              _items.add(Ticket(
+                  id: key,
+                  codigo: value['codigo'],
+                  empresa: value['empresa'],
+                  cnpj: value['cnpj']));
+            }
+          });
+          notifyListeners();
+        }
       });
     }
 

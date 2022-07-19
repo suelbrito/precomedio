@@ -15,9 +15,14 @@ class TicketListView extends StatelessWidget {
 
     return Scaffold(
         body: SafeArea(
-            child: ListView.builder(
-      itemCount: loadedTickets.length,
-      itemBuilder: (context, index) => TicketItem(ticket: loadedTickets[index]),
-    )));
+            child: loadedTickets.isEmpty
+                ? Center(
+                    child: Text('Nada a exibir',
+                        style: Theme.of(context).textTheme.headline1))
+                : ListView.builder(
+                    itemCount: loadedTickets.length,
+                    itemBuilder: (context, index) =>
+                        TicketItem(ticket: loadedTickets[index]),
+                  )));
   }
 }
