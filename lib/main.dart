@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:precomedio/components/auth_check.dart';
 import 'package:precomedio/modules/app/view/app_screen.dart';
+import 'package:precomedio/modules/app/view/camera_screen.dart';
+import 'package:precomedio/modules/app/view/settings_screen.dart';
 import 'package:precomedio/modules/compra/controller/compra_controller.dart';
 import 'package:precomedio/modules/compra/view/compra_add.dart';
 import 'package:precomedio/modules/compra/view/compra_ativo_screen.dart';
@@ -69,6 +71,8 @@ class MyApp extends StatelessWidget {
             AppRoutes.TICKET_ADD: (ctx) => const TicketAddScreen(),
             AppRoutes.TICKET_EDIT: (ctx) => const TicketEditScreen(),
             AppRoutes.AUTH_CHECK: (ctx) => const AuthCheck(),
+            AppRoutes.SETTINGS: (ctx) => const SettingsScreen(),
+            AppRoutes.CAMERA: (ctx) => const CameraScreen(),
           },
         ));
   }

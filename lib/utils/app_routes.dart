@@ -10,4 +10,6 @@ class AppRoutes {
   static const TICKET_EDIT = '/ticket-edit';
   static const TICKET_ADD = '/ticket-add';
   static const AUTH_CHECK = '/auth-check';
+  static const SETTINGS = '/settings';
+  static const CAMERA = '/camera';
 }
