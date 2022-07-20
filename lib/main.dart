@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:precomedio/components/auth_check.dart';
 import 'package:precomedio/modules/app/view/app_screen.dart';
 import 'package:precomedio/modules/compra/controller/compra_controller.dart';
 import 'package:precomedio/modules/compra/view/compra_add.dart';
@@ -13,6 +15,7 @@ import 'package:precomedio/modules/ticket/view/ticket_add.dart';
 import 'package:precomedio/modules/ticket/view/ticket_edit.dart';
 import 'package:precomedio/modules/ticket/view/ticket_screen.dart';
 import 'package:precomedio/modules/app/view/tabs_screen.dart';
+import 'package:precomedio/services/local_auth_service.dart';
 import 'package:precomedio/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          Provider<LocalAuthService>(
+              create: (context) =>
+                  LocalAuthService(auth: LocalAuthentication())),
           ChangeNotifierProvider(
             create: (context) => TicketController(),
           ),
@@ -50,7 +56,7 @@ class MyApp extends StatelessWidget {
                       color: Colors.blueGrey,
                       fontSize: 25,
                       fontWeight: FontWeight.bold))),
-          initialRoute: '/',
+          initialRoute: AppRoutes.AUTH_CHECK,
           routes: {
             AppRoutes.HOME: (ctx) => const TabsScreen(),
             AppRoutes.LISTA: (ctx) => const ListaScreen(),
@@ -62,6 +68,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.TICKET_LIST: (ctx) => const TicketScreen(),
             AppRoutes.TICKET_ADD: (ctx) => const TicketAddScreen(),
             AppRoutes.TICKET_EDIT: (ctx) => const TicketEditScreen(),
+            AppRoutes.AUTH_CHECK: (ctx) => const AuthCheck(),
           },
         ));
   }

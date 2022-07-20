@@ -1,5 +1,3 @@
-import 'package:precomedio/modules/ticket/model/ticket_model.dart';
-
 class CompraAtivo {
   final String id;
   final String compraId;
