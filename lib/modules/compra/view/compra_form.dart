@@ -92,11 +92,24 @@ class CompraForm extends StatelessWidget {
 
       if (isEdit) {
         compraProvider.updateCompra(compra);
+        Navigator.pop(context);
       } else {
         compraProvider.addCompra(compra);
+        Navigator.of(context)
+            .pushNamed(AppRoutes.COMPRA_ATIVO_LIST, arguments: compra);
       }
+    }
 
-      Navigator.pop(context);
+    _sendCompraAtivoForm(id, data, valor, taxas, observacao) {
+      Compra compra = Compra(
+          id: id,
+          data: DateFormat('dd/MM/yyyy').parse(data),
+          valor: valor,
+          taxas: double.parse(taxas),
+          observacao: observacao);
+
+      Navigator.of(context)
+          .pushNamed(AppRoutes.COMPRA_ATIVO_LIST, arguments: compra);
     }
 
     return SingleChildScrollView(
@@ -157,7 +170,22 @@ class CompraForm extends StatelessWidget {
                             style:
                                 ElevatedButton.styleFrom(primary: Colors.red),
                             onPressed: () => showAlertDialog(context, _id),
-                            child: const Text('Excluir')))
+                            child: const Text('Excluir'))),
+                    Visibility(
+                        visible: isEdit, child: const SizedBox(width: 10)),
+                    Visibility(
+                        visible: isEdit,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.indigo),
+                            onPressed: () => _sendCompraAtivoForm(
+                                  _id,
+                                  _dataController.text,
+                                  _valor,
+                                  _taxasController.text,
+                                  _observacaoController.text,
+                                ),
+                            child: const Text('Gerenciar ativos')))
                   ]),
                 ],
               ),

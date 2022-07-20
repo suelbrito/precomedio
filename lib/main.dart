@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:precomedio/modules/app/view/app_screen.dart';
 import 'package:precomedio/modules/compra/controller/compra_controller.dart';
 import 'package:precomedio/modules/compra/view/compra_add.dart';
+import 'package:precomedio/modules/compra/view/compra_ativo_screen.dart';
 import 'package:precomedio/modules/compra/view/compra_edit.dart';
 import 'package:precomedio/modules/compra/view/compra_ativo_add.dart';
 import 'package:precomedio/modules/compra/view/compra_screen.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
             AppRoutes.COMPRA_LIST: (ctx) => const CompraScreen(),
             AppRoutes.COMPRA_ADD: (ctx) => const CompraAddScreen(),
             AppRoutes.COMPRA_EDIT: (ctx) => const CompraEditScreen(),
+            AppRoutes.COMPRA_ATIVO_LIST: (ctx) => const CompraAtivoScreen(),
             AppRoutes.COMPRA_ATIVO_ADD: (ctx) => const CompraAtivoAddScreen(),
             AppRoutes.TICKET_LIST: (ctx) => const TicketScreen(),
             AppRoutes.TICKET_ADD: (ctx) => const TicketAddScreen(),

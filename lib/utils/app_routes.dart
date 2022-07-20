@@ -4,6 +4,7 @@ class AppRoutes {
   static const COMPRA_LIST = '/compra';
   static const COMPRA_EDIT = '/compra-edit';
   static const COMPRA_ADD = '/compra-add';
+  static const COMPRA_ATIVO_LIST = '/compra-ativo-list';
   static const COMPRA_ATIVO_ADD = '/compra-ativo-add';
   static const TICKET_LIST = '/ticket';
   static const TICKET_EDIT = '/ticket-edit';

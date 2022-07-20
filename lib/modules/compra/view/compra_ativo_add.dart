@@ -1,5 +1,7 @@
-import 'package:precomedio/modules/compra/view/compra_ativo_form.dart';
+import 'package:intl/intl.dart';
+import 'package:precomedio/components/main_drawer.dart';
 import 'package:precomedio/modules/compra/model/compra_model.dart';
+import 'package:precomedio/modules/compra/view/compra_ativo_form.dart';
 import 'package:flutter/material.dart';
 
 class CompraAtivoAddScreen extends StatelessWidget {
@@ -9,9 +11,12 @@ class CompraAtivoAddScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final compra = ModalRoute.of(context)!.settings.arguments as Compra;
 
+    var formatter = DateFormat('dd/MM/yyyy');
+    String formattedDate = formatter.format(compra.data);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ativos da operação em ${compra.data}'),
+        title: Text('Adicionar ativo em $formattedDate'),
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -21,7 +26,8 @@ class CompraAtivoAddScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: CompraAtivoForm(compraModel: compra),
+      body: CompraAtivoForm(compraId: compra.id),
+      drawer: const MainDrawer(),
     );
   }
 }

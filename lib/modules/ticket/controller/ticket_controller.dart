@@ -112,4 +112,47 @@ class TicketController with ChangeNotifier {
 
     return items;
   }
+
+  double getPrecoMedioTicket(String ticket) {
+    double precoMedio = 0.0;
+    int quantidade = 0;
+    double valor = 0.0;
+    final future = http.get(Uri.parse('$_baseUrl/purchasesItems.json'));
+
+    future.then((response) {
+      if (response.body != "null") {
+        final Map<String, dynamic> list = jsonDecode(response.body);
+        list.forEach((key, value) {
+          if (value['ticket'] == ticket) {
+            quantidade += (value['quantidade'] as int);
+            valor += (value['valor'] as double);
+          }
+        });
+
+        if (quantidade > 0) {
+          precoMedio = valor / quantidade.toDouble();
+        }
+      }
+    });
+
+    return precoMedio;
+  }
+
+  int getQuantidadeTicket(String ticket) {
+    int quantidade = 0;
+    final future = http.get(Uri.parse('$_baseUrl/purchasesItems.json'));
+
+    future.then((response) {
+      if (response.body != "null") {
+        final Map<String, dynamic> list = jsonDecode(response.body);
+        list.forEach((key, value) {
+          if (value['ticket'] == ticket) {
+            quantidade += (value['quantidade'] as int);
+          }
+        });
+      }
+    });
+
+    return quantidade;
+  }
 }
